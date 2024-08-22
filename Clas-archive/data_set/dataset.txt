@@ -1,3 +1,0 @@
-Masoud Nickparvar (2021). Brain Tumor MRI Dataset. https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset
-Jun Cheng. Brain Tumor Dataset[DS/OL]. V1. Science Data Bank, 2022[2024-06-21]. https://cstr.cn/31253.11.sciencedb.06290. CSTR:31253.11.sciencedb.06290.
-Alexander Mamaev (2021). Flowers Recognition. https://www.kaggle.com/datasets/alxmamaev/flowers-recognition
