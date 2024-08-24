@@ -1,4 +1,4 @@
-# Efficient brain MRI Tumor Diagnosis by fusing Tensor residual Group and Superpixel map Features
+# Efficient brain MRI Tumor Diagnosis by Fusing Tensor Residual Group and Superpixel Map Features
 
 ## Overview
 
