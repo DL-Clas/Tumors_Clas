@@ -2,7 +2,7 @@
 
 ## Overview
 
-<div style="text-align:center"><img src='imgs/teedBanner.png' width=800>
+<div style="text-align:center"><img src='imgs/arc.png' width=800>
 </div>
 
 (https://github.com/DL-Clas/Tumors_Clas.git).
