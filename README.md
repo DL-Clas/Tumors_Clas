@@ -4,8 +4,7 @@
 
 <div style="text-align:center"><img src='Clas-archive/results/arc.png' width=800>
 </div>
-
-(https://github.com/DL-Clas/Tumors_Clas.git).
+Brain tumors present a significant threat to human life and health. However, current deep learning models for brain MRI diagnosis often struggle with insufficient feature representation and limited balancing capabilities, which impairs diagnostic accuracy. To address these issues, we propose the Efficient Brain MRI Tumor Diagnosis Networks by Fusing Tensor Residual Attention and Superpixel Map Features (BTNet-TS). First, BTNet-TS incorporates Lightweight Residual blocks Fused with 3D tensor Attention (LR-3DA), which utilize 3D tensors to capture multidimensional semantic features of brain MRI lesions. Then, a Multi-scale Feature Fusion Strategy based on Group DenseNet (MFS-GD) is introduced to fuse underlying fine-grained features with deep semantic information. Finally, a Graph Convolutional Feature extraction method based on Superpixel Segmentation (GCF-2S) is developed to extract and analyze lesion-local correlation features. The experimental results demonstrate that the method presented in this paper achieves the best diagnostic performance across three brain MRI tumor datasets, with improvements of 2.68% and 2.63% in Acc and F1 scores compared to leading models, including the lightweight MobileNet and the latest RDNet, reaching a maximum accuracy of 98.28%. Additionally, BTNet-TS balances stability and efficiency more effectively, further demonstrating its efficacy in brain MRI tumor diagnosis. The code and pre-trained model are available at https://github.com/DL-Clas/Tumors_Clas.git.
 
 # Construction
 
