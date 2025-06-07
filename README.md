@@ -11,17 +11,17 @@ Brain tumors present a significant threat to human life and health. However, cur
     git clone https://github.com/DL-Clas/Tumors_Clas.git
 
 
-## Testing with ETD-TGSF
+## Testing with BTNet-TS
 
 Copy and paste your images into data/ or data2/ folder, and:
 
     python predict.py
 
-## Testing with ETD-TGSF
+## Testing with BTNet-TS
 
     python eval.py
     
-## Training with ETD-TGSF
+## Training with BTNet-TS
     
     python main.py
 
