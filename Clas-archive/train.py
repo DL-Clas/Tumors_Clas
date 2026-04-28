@@ -11,9 +11,8 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
+from net.MyDiagX import MyDiag21 as BTNet_TS
 
-# Note: You will need to import your actual model architecture here
-# from models.btnet import BTNet_TS 
 
 def set_seed(seed=42):
     """
