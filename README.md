@@ -1,13 +1,13 @@
 # BTNet-TS: Efficient Brain Tumor Diagnosis Networks by Fusing Tensor Residual Attention and Superpixel Map Features
 
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.11.0-EE4C2C.svg?style=flat-square&logo=pytorch)](https://pytorch.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Official PyTorch implementation of **BTNet-TS**, a novel architecture designed to achieve an optimal balance between accuracy and efficiency in brain MRI tumor diagnosis.
 
 ## 📖 Overview
 
-![Framework Diagram of BTNet-TS](docs/framework_diagram.png) *(Please place your diagram image in a `docs` folder or update this path)*
+![Framework Diagram of BTNet-TS](docs/framework_diagram.png) 
+*(Note: Please ensure your framework diagram image is placed in a `docs/` folder or update this path to match your repository's structure)*
 
 Brain tumors present a significant threat to human life and health. Current deep learning models for brain MRI diagnosis often struggle with insufficient feature representation and limited balancing capabilities, impairing diagnostic accuracy, especially in clinical scenarios with severe class imbalance. 
 
@@ -42,3 +42,88 @@ conda activate btnet
 # Install PyTorch and dependencies
 conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
 pip install -r requirements.txt
+```
+
+---
+
+## 📂 Datasets & Data Split Protocols
+
+To ensure complete transparency and prevent data leakage, we rigorously standardized our preprocessing and data splitting methodologies. The exact dataset split files (JSON/CSV) are available in the `splits/` directory. 
+
+Please download the datasets from their public repositories and place them in the `data/` folder:
+
+1. **[BTD-3 (Brain Tumor Dataset)](https://figshare.com/articles/dataset/brain_tumor_dataset/1512427)**
+   * **Details:** 3,064 contrast-enhanced T1 images across 233 patients.
+   * **Split Granularity:** 8:2 split performed **strictly at the patient level** to prevent near-duplicate slice leakage.
+
+2. **[BTD-4 (Brain Tumor MRI Dataset)](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)**
+   * **Details:** 7,023 aggregated human brain MRIs.
+   * **Split Granularity:** 8:2 split performed **image-wise with rigorous deduplication** to ensure no near-overlap exists between training and testing sets.
+
+3. **[BTD-44 (Brain Tumor MRI Images 44 Classes)](https://www.kaggle.com/datasets/tourist55/brain-tumor-mri-images-44-classes)**
+   * **Details:** 4,479 highly imbalanced brain tumor images across 44 fine-grained sub-categories.
+   * **Split Granularity:** 8:2 split performed **image-wise with rigorous deduplication**.
+
+---
+
+## 🚀 Training
+
+All baseline models and the BTNet-TS architecture are trained under a strictly matched protocol. This includes standardized normalization, identical augmentation operations (standard spatial transformations), and specific random-seed handling for exact replication.
+
+To train the BTNet-TS model from scratch on the BTD-4 dataset using the default hyperparameters (Batch Size: 16, Optimizer: Adam, Initial LR: 1e-3, Epochs: 100):
+
+```bash
+python train.py \
+  --dataset BTD-4 \
+  --data_dir ./data/BTD-4 \
+  --batch_size 16 \
+  --epochs 100 \
+  --lr 0.001 \
+  --seed 42 \
+  --save_dir ./checkpoints
+```
+
+**Cross-Validation:** To run the rigorous 5-fold cross-validation used in the manuscript:
+```bash
+python train_cv.py --dataset BTD-4 --folds 5
+```
+
+*Note: Detailed hyperparameters for the dynamic graph construction (where superpixel nodes K are set to 16, 9, and 4 for GCN1, GCN2, and GCN3) can be configured in `configs/btnet_config.yaml`.*
+
+---
+
+## 🧪 Testing and Evaluation
+
+To test a pre-trained BTNet-TS model and generate comprehensive classification metrics (Accuracy, Precision, Recall, F1-Score, MCC, and Balanced Accuracy):
+
+```bash
+python test.py \
+  --dataset BTD-4 \
+  --data_dir ./data/BTD-4/test \
+  --weights ./checkpoints/best_btnet_model.pth
+```
+
+### Reproducibility & Failure Modes
+We provide additional scripts to evaluate the model's robustness under perturbation (Gaussian Noise and Gaussian Blur) to simulate clinical acquisition artifacts and diffuse tumor boundaries, as discussed in the manuscript's failure mode analysis:
+```bash
+python evaluate_robustness.py --weights ./checkpoints/best_btnet_model.pth --noise_level 0.01
+```
+
+---
+
+## 📝 Citation
+
+If you find this code or our research helpful in your work, please consider citing our paper:
+
+```bibtex
+@article{BTNetTS2024,
+  title={Efficient Brain Tumor Diagnosis Networks by Fusing Tensor Residual Attention and Superpixel Map Features},
+  author={Your Name and Co-authors},
+  journal={Expert Systems with Applications},
+  year={2024},
+  publisher={Elsevier}
+}
+```
+
+## 📧 Contact
+For any questions regarding the code, data splits, or methodology, please open an issue in this repository or contact the corresponding author at fanchd@126.com.
