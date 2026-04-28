@@ -6,8 +6,7 @@ Official PyTorch implementation of **BTNet-TS**, a novel architecture designed t
 
 ## 📖 Overview
 
-![Framework Diagram of BTNet-TS](docs/framework_diagram.png) 
-*(Note: Please ensure your framework diagram image is placed in a `docs/` folder or update this path to match your repository's structure)*
+![Framework Diagram of BTNet-TS](Clas-archive/results/arc.png) 
 
 Brain tumors present a significant threat to human life and health. Current deep learning models for brain MRI diagnosis often struggle with insufficient feature representation and limited balancing capabilities, impairing diagnostic accuracy, especially in clinical scenarios with severe class imbalance. 
 
@@ -60,7 +59,7 @@ Please download the datasets from their public repositories and place them in th
    * **Details:** 7,023 aggregated human brain MRIs.
    * **Split Granularity:** 8:2 split performed **image-wise with rigorous deduplication** to ensure no near-overlap exists between training and testing sets.
 
-3. **[BTD-44 (Brain Tumor MRI Images 44 Classes)](https://www.kaggle.com/datasets/tourist55/brain-tumor-mri-images-44-classes)**
+3. **[BTD-44 (Brain Tumor MRI Images 44 Classes)](https://www.kaggle.com/datasets/fernando2rad/brain-tumor-mri-images-44c?select=Astrocitoma+T1)**
    * **Details:** 4,479 highly imbalanced brain tumor images across 44 fine-grained sub-categories.
    * **Split Granularity:** 8:2 split performed **image-wise with rigorous deduplication**.
 
@@ -109,21 +108,6 @@ We provide additional scripts to evaluate the model's robustness under perturbat
 python evaluate_robustness.py --weights ./checkpoints/best_btnet_model.pth --noise_level 0.01
 ```
 
----
-
-## 📝 Citation
-
-If you find this code or our research helpful in your work, please consider citing our paper:
-
-```bibtex
-@article{BTNetTS2024,
-  title={Efficient Brain Tumor Diagnosis Networks by Fusing Tensor Residual Attention and Superpixel Map Features},
-  author={Your Name and Co-authors},
-  journal={Expert Systems with Applications},
-  year={2024},
-  publisher={Elsevier}
-}
-```
 
 ## 📧 Contact
-For any questions regarding the code, data splits, or methodology, please open an issue in this repository or contact the corresponding author at fanchd@126.com.
+For any questions regarding the code, data splits, or methodology, please open an issue in this repository or contact the author.
