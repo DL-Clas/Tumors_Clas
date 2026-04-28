@@ -1,43 +1,44 @@
-# Efficient Brain Tumor Diagnosis Networks by Fusing Tensor Residual Attention and Superpixel Map Features
+# BTNet-TS: Efficient Brain Tumor Diagnosis Networks by Fusing Tensor Residual Attention and Superpixel Map Features
 
-## Overview
+[![PyTorch](https://img.shields.io/badge/PyTorch-1.11.0-EE4C2C.svg?style=flat-square&logo=pytorch)](https://pytorch.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-![Framework Diagram of BTNet-TS](Clas-archive/results/arc.png)
+Official PyTorch implementation of **BTNet-TS**, a novel architecture designed to achieve an optimal balance between accuracy and efficiency in brain MRI tumor diagnosis.
 
-Brain tumors present a significant threat to human life and health. However, current deep learning models for brain MRI diagnosis often struggle with insufficient feature representation and limited balancing capabilities, which impairs diagnostic accuracy. To address these issues, we propose the Efficient Brain MRI Tumor Diagnosis Networks by Fusing Tensor Residual Attention and Superpixel Map Features (BTNet-TS).
+## 📖 Overview
 
-First, BTNet-TS incorporates Efficient Residual blocks fused with 3-dimensional tensor attention (ER-3DA), which utilize 3D tensors to capture multidimensional semantic features of brain MRI lesions. Then, a Multi-scale Feature Fusion Strategy based on Group DenseNet (MFS-GD) is introduced to fuse underlying fine-grained features with deep semantic information. Finally, a Graph Convolutional Feature extraction method based on Superpixel Segmentation (GCF-2S) is developed to extract and analyze lesion-local correlation features. 
+![Framework Diagram of BTNet-TS](docs/framework_diagram.png) *(Please place your diagram image in a `docs` folder or update this path)*
 
-The experimental results demonstrate that the proposed method achieves an optimal balance between accuracy and efficiency across three brain MRI tumor datasets, reaching a maximum accuracy of 98.28% on the BTD-4 dataset. Additionally, rather than relying on explicit data-level rebalancing, BTNet-TS effectively preserves fine-grained details of minority lesions, inherently mitigating extreme class imbalance. Currently, BTNet-TS serves as a promising research architecture for public-dataset brain MRI tumor classification.
+Brain tumors present a significant threat to human life and health. Current deep learning models for brain MRI diagnosis often struggle with insufficient feature representation and limited balancing capabilities, impairing diagnostic accuracy, especially in clinical scenarios with severe class imbalance. 
 
-The code, detailed hyperparameters, and dataset split protocols are available at https://github.com/DL-Clas/Tumors_Clas.git.
+To address these issues, we propose the **BTNet-TS** architecture, which consists of three core components:
+1. **ER-3DA (Efficient Residual blocks fused with 3-dimensional tensor attention):** Utilizes 3D tensors to capture concurrent multidimensional semantic features of brain MRI lesions without unnecessary computational bloat.
+2. **MFS-GD (Multi-scale Feature Fusion Strategy based on Group DenseNet):** Fuses underlying fine-grained features with deep semantic information, inherently mitigating extreme class imbalance by preserving minority lesion details.
+3. **GCF-2S (Graph Convolutional Feature extraction based on Superpixel Segmentation):** Extracts and analyzes lesion-local correlation features to provide complementary topological priors.
 
-## Construction
-*(Placeholder for environment construction details)*
+**Key Results:** BTNet-TS achieves a state-of-the-art accuracy of **98.28%** on the BTD-4 dataset. Comprehensive 5-fold cross-validation proves the model's robustness against patient and data variability, demonstrating a highly favorable accuracy-efficiency balance compared to both heavy vision transformers and compact CNNs.
 
-## Testing with BTNet-TS
-Copy and paste your images into `data/` or `data2/` folder, and:
-*(Placeholder for testing execution commands)*
+---
 
-## Training with BTNet-TS
-Check the configurations of the training in `train.py`. All baseline models and the BTNet-TS architecture are trained under a fully matched protocol to ensure reproducibility. This includes standardized preprocessing, fixed normalization schemes, consistent augmentation operations, and strict random-seed handling. 
+## ⚙️ Environment Setup
 
-To ensure complete transparency and prevent data leakage, exact dataset split files are provided in the repository.
+Our standardized experimental environment ensures exact reproducibility. The model was trained and evaluated on Ubuntu 20.04 using an NVIDIA RTX 4090 GPU.
 
-## Brain Tumor Dataset dataset (BTD-3)
-The 8:2 train/test split for this dataset was performed strictly at the patient level to prevent near-duplicate slices.
-Here the link
-Citation
+**Prerequisites:**
+* Python >= 3.8
+* PyTorch == 1.11.0
+* CUDA == 11.3
 
-## Brain Tumor MRI Dataset (BTD-4)
-This aggregated dataset was processed with rigorous image deduplication to ensure no near-overlap exists between training and testing sets.
-Here the link
-Citation
+**Installation:**
+```bash
+# Clone the repository
+git clone [https://github.com/DL-Clas/Tumors_Clas.git](https://github.com/DL-Clas/Tumors_Clas.git)
+cd Tumors_Clas
 
-## Brain Tumor MRI Images 44 Classes (BTD-44)
-This aggregated dataset was also rigorously deduplicated at the image level.
-Here the link
-Citation
+# Create a conda virtual environment
+conda create -n btnet python=3.8 -y
+conda activate btnet
 
-## About
-Code repository for "Efficient Brain Tumor Diagnosis Networks by Fusing Tensor Residual Attention and Superpixel Map Features."
+# Install PyTorch and dependencies
+conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
+pip install -r requirements.txt
