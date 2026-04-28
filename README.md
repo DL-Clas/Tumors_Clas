@@ -2,7 +2,7 @@
 
 ## Overview
 
-![Framework Diagram of BTNet-TS](results/arc.png)
+![Framework Diagram of BTNet-TS](Clas-archive/results/arc.png)
 
 Brain tumors present a significant threat to human life and health. However, current deep learning models for brain MRI diagnosis often struggle with insufficient feature representation and limited balancing capabilities, which impairs diagnostic accuracy. To address these issues, we propose the Efficient Brain MRI Tumor Diagnosis Networks by Fusing Tensor Residual Attention and Superpixel Map Features (BTNet-TS).
 
