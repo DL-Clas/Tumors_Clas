@@ -1,4 +1,4 @@
-# Efficient Brain Tumor Diagnosis Networks by Fusing Tensor Residual Attention and Superpixel Map Features
+# BTNet-TS: Efficient Brain Tumor Diagnosis Networks by Fusing Tensor Residual Attention and Superpixel Map Features
 
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.11.0-EE4C2C.svg?style=flat-square&logo=pytorch)](https://pytorch.org/)
 
