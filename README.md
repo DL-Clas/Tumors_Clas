@@ -54,15 +54,23 @@ Please download the datasets from their public repositories and place them in th
 1. **[BTD-3 (Brain Tumor Dataset)](https://figshare.com/articles/dataset/brain_tumor_dataset/1512427)**
    * **Details:** 3,064 contrast-enhanced T1 images across 233 patients.
    * **Split Granularity:** 8:2 split performed **strictly at the patient level** to prevent near-duplicate slice leakage.
-
+   ```bash
+   python split_data.py --dataset BTD-3 --val_rate 0.2 --split_mode patient
+   ```
+   
 2. **[BTD-4 (Brain Tumor MRI Dataset)](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)**
    * **Details:** 7,023 aggregated human brain MRIs.
    * **Split Granularity:** 8:2 split performed **image-wise with rigorous deduplication** to ensure no near-overlap exists between training and testing sets.
-
+   ```bash
+   python split_data.py --dataset BTD-4 --val_rate 0.2 --split_mode image
+   ```
+   
 3. **[BTD-44 (Brain Tumor MRI Images 44 Classes)](https://www.kaggle.com/datasets/fernando2rad/brain-tumor-mri-images-44c?select=Astrocitoma+T1)**
    * **Details:** 4,479 highly imbalanced brain tumor images across 44 fine-grained sub-categories.
    * **Split Granularity:** 8:2 split performed **image-wise with rigorous deduplication**.
-
+   ```bash
+   python split_data.py --dataset BTD-44 --val_rate 0.2 --split_mode image
+   ```
 ---
 
 ## 🚀 Training
