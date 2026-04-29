@@ -6,7 +6,7 @@ Official PyTorch implementation of **BTNet-TS**, a novel architecture designed t
 
 ## 📖 Overview
 
-![Framework Diagram of BTNet-TS](Clas-archive/results/arc.png) 
+![Framework Diagram of BTNet-TS](results/arc.png) 
 
 Brain tumors present a significant threat to human life and health. Current deep learning models for brain MRI diagnosis often struggle with insufficient feature representation and limited balancing capabilities, impairing diagnostic accuracy, especially in clinical scenarios with severe class imbalance. 
 
