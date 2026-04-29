@@ -1,4 +1,1 @@
-https://pan.baidu.com/s/1gKwVWhhO9E56Xyd7zyZWOA 
-code: 4anc
-dataset posted on 2024-12-21, 20:57 authored by Jun Cheng
-This brain tumor dataset contains 3064 T1-weighted contrast-inhanced images with three kinds of brain tumor. Detailed information of the dataset can be found in the readme file.
+
