@@ -67,9 +67,10 @@ Please download the datasets from their public repositories and place them in th
 
 ## 🚀 Training
 
-All baseline models and the BTNet-TS architecture are trained under a strictly matched protocol. This includes standardized normalization, identical augmentation operations (standard spatial transformations), and specific random-seed handling for exact replication.
+All baseline models and the BTNet-TS architecture are trained under a strictly matched protocol. This includes standardized normalization, identical augmentation operations (standard spatial transformations), and fixed global random seeds (Seed = 42) for exact replication.
 
-To train the BTNet-TS model from scratch on the BTD-4 dataset using the default hyperparameters (Batch Size: 16, Optimizer: Adam, Initial LR: 1e-3, Epochs: 100):
+**1. Standard Training**
+To train the BTNet-TS model from scratch on the BTD-4 dataset using the default hyperparameters:
 
 ```bash
 python train.py \
@@ -82,32 +83,45 @@ python train.py \
   --save_dir ./checkpoints
 ```
 
-**Cross-Validation:** To run the rigorous 5-fold cross-validation used in the manuscript:
+**2. Cross-Validation:** 
+To run the rigorous 5-fold cross-validation used in the manuscript for robust clinical generalization evaluation:
 ```bash
 python train_cv.py --dataset BTD-4 --folds 5
 ```
 
-*Note: Detailed hyperparameters for the dynamic graph construction (where superpixel nodes K are set to 16, 9, and 4 for GCN1, GCN2, and GCN3) can be configured in `configs/btnet_config.yaml`.*
+*Note: Detailed hyperparameters for the dynamic graph construction (where superpixel nodes K are set to 16, 9, and 4 for GCN1, GCN2, and GCN3) are implemented inherently within the `net/BTNet_TS.py` architecture.*
 
 ---
 
 ## 🧪 Testing and Evaluation
 
-To test a pre-trained BTNet-TS model and generate comprehensive classification metrics (Accuracy, Precision, Recall, F1-Score, MCC, and Balanced Accuracy):
+**1. Comprehensive Diagnostic Performance**
+To test a pre-trained BTNet-TS model and generate comprehensive classification metrics including Accuracy, Macro Precision, Macro Recall, Macro F1-Score, MCC, Balanced Accuracy, and Per-Class Sensitivity:
 
 ```bash
 python test.py \
-  --dataset BTD-4 \
-  --data_dir ./data/BTD-4/test \
+  --dataset BTD-44 \
+  --data_dir ./data/BTD-44/test \
   --weights ./checkpoints/best_btnet_model.pth
 ```
 
-### Reproducibility & Failure Modes
-We provide additional scripts to evaluate the model's robustness under perturbation (Gaussian Noise and Gaussian Blur) to simulate clinical acquisition artifacts and diffuse tumor boundaries, as discussed in the manuscript's failure mode analysis:
+**2. Hardware Efficiency Evaluation**
+To profile the exact parameter counts, FLOPs, Inference Latency (ms), Memory Footprint (MB), and Throughput (img/s) on your hardware:
+
 ```bash
-python evaluate_robustness.py --weights ./checkpoints/best_btnet_model.pth --noise_level 0.01
+python efficiency_eval.py --weights ./checkpoints/best_btnet_model.pth
 ```
 
+**3. Robustness and Failure Modes Analysis**
+To evaluate the model's robustness under perturbation (Gaussian Noise and Gaussian Blur) simulating clinical acquisition artifacts and diffuse tumor boundaries:
+
+```bash
+python evaluate_robustness.py \
+  --data_dir ./data/BTD-4/test \
+  --weights ./checkpoints/best_btnet_model.pth \
+  --noise_level 0.01 \
+  --blur_kernel 3
+```
 
 ## 📧 Contact
-For any questions regarding the code, data splits, or methodology, please open an issue in this repository or contact the author.
+For any questions regarding the code, data splits, or methodology, please open an issue in this repository or contact the corresponding author.
