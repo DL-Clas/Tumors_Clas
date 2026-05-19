@@ -1,58 +1,109 @@
 import os
-import cv2
+import shutil
 import imagehash
 from PIL import Image
-from skimage.metrics import structural_similarity as ssim
-from collections import defaultdict
+from pathlib import Path
+from tqdm import tqdm
 
-def calculate_phash(image_path):
-    """Calculate Perceptual Hash (pHash) for fast initial slice filtering."""
-    try:
-        img = Image.open(image_path).convert('L')
-        return str(imagehash.phash(img))
-    except Exception:
-        return None
+def global_deduplicate_by_folder(dataset_dir, archive_dir=None, hash_threshold=2, action='move'):
+    """
+    Ignoring the file naming standard, global deduplication is carried out based on the Hamming distance of image content.
+    By default, it is carried out independently according to each classified subfolder to maximize the running speed.
 
-def calculate_ssim(img_path1, img_path2):
-    """Calculate SSIM between two images for precise adjacent slice matching."""
-    img1 = cv2.imread(img_path1, cv2.IMREAD_GRAYSCALE)
-    img2 = cv2.imread(img_path2, cv2.IMREAD_GRAYSCALE)
+    Parameters:
+    Hash_threshold: Hamming distance threshold (0-64).
+    0 means that there must be no noise at one pixel level (absolutely consistent);
+    2~4 Recommended for medical images, which can tolerate extremely slight compression loss or slight noise changes;
+    Greater than 10 may delete different consecutive slices by mistake.
+    """
+    dataset_path = Path(dataset_dir)
     
-    if img1.shape != img2.shape:
-        img2 = cv2.resize(img2, (img1.shape[1], img1.shape[0]))
+    if archive_dir is None:
+        archive_path = dataset_path.parent / f"{dataset_path.name}_Duplicates_Archive"
+    else:
+        archive_path = Path(archive_dir)
         
-    score, _ = ssim(img1, img2, full=True)
-    return score
+    if action == 'move':
+        archive_path.mkdir(parents=True, exist_ok=True)
 
-def extract_leakage_clusters(image_directory, ssim_threshold=0.98):
-    """
-    Groups near-duplicate MRI slices (likely from the same patient) into atomic clusters
-    to ensure they are allocated to the exact same cross-validation fold.
-    """
-    phash_dict = defaultdict(list)
-    
-    # 1. Fast Hash Mapping
-    for root, _, files in os.walk(image_directory):
-        for file in files:
-            if file.lower().endswith(('.png', '.jpg', '.jpeg')):
-                filepath = os.path.join(root, file)
-                img_hash = calculate_phash(filepath)
-                if img_hash:
-                    phash_dict[img_hash].append(filepath)
+    # Get all subfolders
+    categories = [d for d in dataset_path.iterdir() if d.is_dir()]
+    if not categories:
+        # If no subfolders exist, treat the root directory as the only category
+        categories = [dataset_path]
 
-    atomic_clusters = []
-    
-    # 2. SSIM Validation for High-Confidence Clustering
-    for hash_val, paths in phash_dict.items():
-        if len(paths) > 1:
-            cluster = set()
-            for i in range(len(paths)):
-                for j in range(i + 1, len(paths)):
-                    score = calculate_ssim(paths[i], paths[j])
-                    if score >= ssim_threshold:
-                        cluster.add(paths[i])
-                        cluster.add(paths[j])
-            if cluster:
-                atomic_clusters.append(list(cluster))
+    total_duplicates_found = 0
+
+    for category_dir in categories:
+        print(f"\n📂 Scanning directory: [{category_dir.name}]")
+        
+        # 1. Collect and calculate all the images pHash in this directory 
+        image_data = []
+        image_paths = [p for p in category_dir.glob('*.*') if p.suffix.lower() in ['.png', '.jpg', '.jpeg']]
+        
+        if not image_paths:
+            continue
+            
+        print(f"⏳ extract {len(image_paths)} images...")
+        for img_path in tqdm(image_paths, desc="Hashing"):
+            try:
+                # Convert it into grayscale image to calculate hash, and eliminate the potential interference of color channels.
+                img = Image.open(img_path).convert('L')
+                h = imagehash.phash(img, hash_size=8)
+                image_data.append((img_path, h))
+            except Exception as e:
+                print(f"⚠️  Unable to read {img_path}: {e}")
+
+        # 2. 全局 N^2 汉明距离交叉比对
+        duplicates_to_remove = set()
+        n = len(image_data)
+        
+        print(f"🧠  Executing global cross-comparison (threshold \u2264 {hash_threshold})...")
+        for i in tqdm(range(n), desc="Comparing"):
+            path_i, hash_i = image_data[i]
+            
+            # If i has already been marked as a duplicate image, skip it as a reference for matching others
+            if path_i in duplicates_to_remove:
+                continue
                 
-    return atomic_clusters
+            for j in range(i + 1, n):
+                path_j, hash_j = image_data[j]
+                
+                # If j has already been判定过，也跳过
+                if path_j in duplicates_to_remove:
+                    continue
+                
+                # Core: Calculate Hamming distance (how many bits are different in two 64-bit hashes)
+                distance = hash_i - hash_j 
+                
+                if distance <= hash_threshold:
+                    duplicates_to_remove.add(path_j)
+
+        # 3. Perform physical isolation or deletion
+        if duplicates_to_remove:
+            print(f"🗑️ In [{category_dir.name}] found {len(duplicates_to_remove)} duplicate images, processing...")
+            for dup_path in duplicates_to_remove:
+                if action == 'move':
+                    rel_path = dup_path.relative_to(dataset_path)
+                    dest_path = archive_path / rel_path
+                    dest_path.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.move(str(dup_path), str(dest_path))
+                elif action == 'delete':
+                    os.remove(dup_path)
+            total_duplicates_found += len(duplicates_to_remove)
+        else:
+            print("✅ No duplicate images were found.")
+
+    print(f"\n🎉 Global deduplication task completed! Total cleaned: {total_duplicates_found} redundant slices.")
+
+# ==========================================
+# main function for testing
+# ==========================================
+if __name__ == '__main__':
+    TARGET_DATASET = './BTD-4'
+    
+    global_deduplicate_by_folder(
+        dataset_dir=TARGET_DATASET, 
+        hash_threshold=0.65,   # Allow 2 bit hash error, specifically for dealing with same-source images that have been re-compressed or introduced slight noise
+        action='move'       # Strongly recommend keeping the move mode, manually confirm the archive folder is correct before彻底 deleting
+    )
