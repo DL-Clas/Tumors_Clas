@@ -9,7 +9,7 @@ import os
 # ==========================================
 def load_real_mri(image_path):
     if not os.path.exists(image_path):
-        raise FileNotFoundError(f"找不到图像文件: {image_path}")
+        raise FileNotFoundError(f"The image file cannot be found: {image_path}")
     img = Image.open(image_path).convert('L')
     return np.array(img, dtype=np.float32) / 255.0
 
@@ -144,7 +144,7 @@ def evaluate_robustness(image_path):
         results[name] = pred
         
         if name == "Baseline (Original)":
-            print(f"{name:<30} | {pred:.4f}          | 基准值")
+            print(f"{name:<30} | {pred:.4f}          | Reference value")
         else:
             print(f"{name:<30} | {pred:.4f}          | {deviation:+.4f}")
 
@@ -161,5 +161,5 @@ def evaluate_robustness(image_path):
     plt.show()
 
 if __name__ == "__main__":
-    IMAGE_PATH = "/Users/brosion/Documents/Code/Tumors_Clas-main/data/BTD-3/Pituitary tumor/Pit_P173_1216.png" 
+    IMAGE_PATH = "./data/BTD-3/Pituitary tumor/Pit_P173_1216.png" 
     evaluate_robustness(IMAGE_PATH)
