@@ -54,7 +54,7 @@ def global_deduplicate_by_folder(dataset_dir, archive_dir=None, hash_threshold=2
             except Exception as e:
                 print(f"⚠️  Unable to read {img_path}: {e}")
 
-        # 2. 全局 N^2 汉明距离交叉比对
+        # 2. Cross Comparison of Global N 2 Hamming Distance
         duplicates_to_remove = set()
         n = len(image_data)
         
@@ -69,7 +69,7 @@ def global_deduplicate_by_folder(dataset_dir, archive_dir=None, hash_threshold=2
             for j in range(i + 1, n):
                 path_j, hash_j = image_data[j]
                 
-                # If j has already been判定过，也跳过
+                # If j has already been decided, also skipped.
                 if path_j in duplicates_to_remove:
                     continue
                 
