@@ -1,0 +1,289 @@
+Glioma/Gli_P030_2054.png 0
+Pituitary tumor/Pit_P191_1483.png 2
+Pituitary tumor/Pit_P209_1677.png 2
+Pituitary tumor/Pit_P156_1109.png 2
+Pituitary tumor/Pit_P161_1134.png 2
+Pituitary tumor/Pit_P198_1562.png 2
+Pituitary tumor/Pit_P207_1650.png 2
+Glioma/Gli_P055_2537.png 0
+Meningioma/Men_P128_445.png 1
+Pituitary tumor/Pit_P186_1389.png 2
+Glioma/Gli_P043_2126.png 0
+Pituitary tumor/Pit_P146_1015.png 2
+Glioma/Gli_P061_2692.png 0
+Glioma/Gli_P043_2125.png 0
+Glioma/Gli_P093_843.png 0
+Glioma/Gli_P043_2127.png 0
+Glioma/Gli_P055_2539.png 0
+Pituitary tumor/Pit_P206_1640.png 2
+Pituitary tumor/Pit_P185_1342.png 2
+Pituitary tumor/Pit_P209_1676.png 2
+Glioma/Gli_P002_1846.png 0
+Meningioma/Men_P137_678.png 1
+Pituitary tumor/Pit_P206_1637.png 2
+Pituitary tumor/Pit_P146_1020.png 2
+Pituitary tumor/Pit_P191_1489.png 2
+Glioma/Gli_P061_2698.png 0
+Glioma/Gli_P011_1933.png 0
+Pituitary tumor/Pit_P165_1175.png 2
+Glioma/Gli_P055_2542.png 0
+Pituitary tumor/Pit_P225_1814.png 2
+Glioma/Gli_P073_2930.png 0
+Pituitary tumor/Pit_P207_1647.png 2
+Glioma/Gli_P061_2695.png 0
+Pituitary tumor/Pit_P198_1566.png 2
+Glioma/Gli_P073_2929.png 0
+Glioma/Gli_P006_1896.png 0
+Pituitary tumor/Pit_P207_1649.png 2
+Pituitary tumor/Pit_P191_1482.png 2
+Glioma/Gli_P026_2029.png 0
+Pituitary tumor/Pit_P198_1560.png 2
+Pituitary tumor/Pit_P224_1810.png 2
+Pituitary tumor/Pit_P146_1023.png 2
+Pituitary tumor/Pit_P198_1563.png 2
+Glioma/Gli_P082_3062.png 0
+Glioma/Gli_P043_2131.png 0
+Glioma/Gli_P026_2030.png 0
+Glioma/Gli_P095_856.png 0
+Pituitary tumor/Pit_P146_1018.png 2
+Glioma/Gli_P067_2758.png 0
+Glioma/Gli_P082_3061.png 0
+Pituitary tumor/Pit_P224_1811.png 2
+Pituitary tumor/Pit_P161_1133.png 2
+Pituitary tumor/Pit_P186_1385.png 2
+Meningioma/Men_P128_449.png 1
+Meningioma/Men_P108_202.png 1
+Pituitary tumor/Pit_P225_1813.png 2
+Glioma/Gli_P043_2130.png 0
+Glioma/Gli_P043_2132.png 0
+Meningioma/Men_P135_614.png 1
+Glioma/Gli_P002_1847.png 0
+Pituitary tumor/Pit_P159_1127.png 2
+Glioma/Gli_P077_3004.png 0
+Pituitary tumor/Pit_P156_1112.png 2
+Glioma/Gli_P055_2540.png 0
+Pituitary tumor/Pit_P156_1111.png 2
+Glioma/Gli_P048_2264.png 0
+Glioma/Gli_P038_2099.png 0
+Meningioma/Men_P137_672.png 1
+Pituitary tumor/Pit_P198_1559.png 2
+Glioma/Gli_P030_2053.png 0
+Meningioma/Men_P117_286.png 1
+Pituitary tumor/Pit_P201_1593.png 2
+Pituitary tumor/Pit_P225_1815.png 2
+Glioma/Gli_P006_1897.png 0
+Glioma/Gli_P073_2922.png 0
+Glioma/Gli_P002_1849.png 0
+Pituitary tumor/Pit_P224_1809.png 2
+Glioma/Gli_P038_2098.png 0
+Glioma/Gli_P093_837.png 0
+Pituitary tumor/Pit_P186_1380.png 2
+Pituitary tumor/Pit_P185_1345.png 2
+Glioma/Gli_P093_841.png 0
+Glioma/Gli_P066_2750.png 0
+Pituitary tumor/Pit_P164_1163.png 2
+Glioma/Gli_P077_3002.png 0
+Pituitary tumor/Pit_P161_1132.png 2
+Glioma/Gli_P048_2262.png 0
+Meningioma/Men_P137_675.png 1
+Glioma/Gli_P055_2534.png 0
+Meningioma/Men_P135_613.png 1
+Glioma/Gli_P006_1894.png 0
+Meningioma/Men_P107_173.png 1
+Glioma/Gli_P082_3059.png 0
+Meningioma/Men_P107_177.png 1
+Pituitary tumor/Pit_P207_1655.png 2
+Glioma/Gli_P073_2931.png 0
+Pituitary tumor/Pit_P201_1598.png 2
+Glioma/Gli_P093_844.png 0
+Pituitary tumor/Pit_P201_1591.png 2
+Meningioma/Men_P137_676.png 1
+Pituitary tumor/Pit_P169_1196.png 2
+Pituitary tumor/Pit_P146_1021.png 2
+Glioma/Gli_P061_2691.png 0
+Glioma/Gli_P061_2694.png 0
+Pituitary tumor/Pit_P191_1488.png 2
+Pituitary tumor/Pit_P213_1714.png 2
+Glioma/Gli_P073_2928.png 0
+Glioma/Gli_P027_2038.png 0
+Pituitary tumor/Pit_P165_1174.png 2
+Glioma/Gli_P077_3005.png 0
+Pituitary tumor/Pit_P169_1195.png 2
+Pituitary tumor/Pit_P213_1713.png 2
+Pituitary tumor/Pit_P201_1597.png 2
+Pituitary tumor/Pit_P191_1487.png 2
+Pituitary tumor/Pit_P165_1176.png 2
+Glioma/Gli_P026_2028.png 0
+Pituitary tumor/Pit_P201_1595.png 2
+Meningioma/Men_P137_673.png 1
+Glioma/Gli_P055_2541.png 0
+Meningioma/Men_P108_204.png 1
+Meningioma/Men_P124_374.png 1
+Meningioma/Men_P135_610.png 1
+Glioma/Gli_P048_2261.png 0
+Meningioma/Men_P124_372.png 1
+Pituitary tumor/Pit_P185_1344.png 2
+Glioma/Gli_P043_2133.png 0
+Glioma/Gli_P026_2032.png 0
+Pituitary tumor/Pit_P175_1225.png 2
+Pituitary tumor/Pit_P225_1816.png 2
+Pituitary tumor/Pit_P224_1808.png 2
+Pituitary tumor/Pit_P186_1383.png 2
+Glioma/Gli_P011_1931.png 0
+Pituitary tumor/Pit_P206_1641.png 2
+Pituitary tumor/Pit_P206_1643.png 2
+Glioma/Gli_P073_2925.png 0
+Meningioma/Men_P128_447.png 1
+Glioma/Gli_P006_1898.png 0
+Glioma/Gli_P073_2926.png 0
+Pituitary tumor/Pit_P201_1594.png 2
+Glioma/Gli_P055_2535.png 0
+Pituitary tumor/Pit_P146_1017.png 2
+Glioma/Gli_P093_838.png 0
+Pituitary tumor/Pit_P165_1173.png 2
+Glioma/Gli_P011_1934.png 0
+Meningioma/Men_P107_176.png 1
+Glioma/Gli_P093_845.png 0
+Meningioma/Men_P135_615.png 1
+Meningioma/Men_P108_205.png 1
+Glioma/Gli_P055_2538.png 0
+Pituitary tumor/Pit_P209_1673.png 2
+Glioma/Gli_P027_2036.png 0
+Pituitary tumor/Pit_P156_1110.png 2
+Meningioma/Men_P137_679.png 1
+Pituitary tumor/Pit_P198_1565.png 2
+Pituitary tumor/Pit_P224_1807.png 2
+Pituitary tumor/Pit_P206_1638.png 2
+Glioma/Gli_P055_2536.png 0
+Glioma/Gli_P033_2071.png 0
+Pituitary tumor/Pit_P198_1564.png 2
+Glioma/Gli_P067_2760.png 0
+Meningioma/Men_P137_674.png 1
+Pituitary tumor/Pit_P206_1642.png 2
+Pituitary tumor/Pit_P209_1672.png 2
+Glioma/Gli_P093_839.png 0
+Pituitary tumor/Pit_P207_1654.png 2
+Glioma/Gli_P067_2759.png 0
+Pituitary tumor/Pit_P206_1635.png 2
+Meningioma/Men_P135_619.png 1
+Glioma/Gli_P011_1932.png 0
+Glioma/Gli_P033_2070.png 0
+Pituitary tumor/Pit_P191_1484.png 2
+Glioma/Gli_P055_2543.png 0
+Pituitary tumor/Pit_P213_1716.png 2
+Pituitary tumor/Pit_P156_1107.png 2
+Glioma/Gli_P093_836.png 0
+Pituitary tumor/Pit_P175_1228.png 2
+Glioma/Gli_P026_2025.png 0
+Pituitary tumor/Pit_P207_1646.png 2
+Pituitary tumor/Pit_P225_1817.png 2
+Pituitary tumor/Pit_P191_1485.png 2
+Pituitary tumor/Pit_P185_1341.png 2
+Glioma/Gli_P026_2026.png 0
+Meningioma/Men_P113_254.png 1
+Glioma/Gli_P066_2751.png 0
+Glioma/Gli_P093_840.png 0
+Glioma/Gli_P006_1893.png 0
+Pituitary tumor/Pit_P201_1599.png 2
+Pituitary tumor/Pit_P156_1108.png 2
+Pituitary tumor/Pit_P224_1806.png 2
+Pituitary tumor/Pit_P186_1388.png 2
+Glioma/Gli_P048_2263.png 0
+Meningioma/Men_P137_677.png 1
+Meningioma/Men_P135_611.png 1
+Pituitary tumor/Pit_P146_1014.png 2
+Glioma/Gli_P073_2923.png 0
+Pituitary tumor/Pit_P201_1596.png 2
+Pituitary tumor/Pit_P201_1600.png 2
+Pituitary tumor/Pit_P186_1381.png 2
+Meningioma/Men_P135_612.png 1
+Pituitary tumor/Pit_P175_1226.png 2
+Glioma/Gli_P093_842.png 0
+Glioma/Gli_P030_2052.png 0
+Meningioma/Men_P124_375.png 1
+Pituitary tumor/Pit_P206_1636.png 2
+Glioma/Gli_P043_2134.png 0
+Glioma/Gli_P006_1892.png 0
+Glioma/Gli_P026_2027.png 0
+Meningioma/Men_P135_618.png 1
+Pituitary tumor/Pit_P146_1016.png 2
+Meningioma/Men_P108_203.png 1
+Glioma/Gli_P061_2689.png 0
+Pituitary tumor/Pit_P191_1481.png 2
+Glioma/Gli_P033_2069.png 0
+Pituitary tumor/Pit_P209_1675.png 2
+Meningioma/Men_P107_172.png 1
+Glioma/Gli_P095_855.png 0
+Glioma/Gli_P061_2696.png 0
+Meningioma/Men_P113_253.png 1
+Pituitary tumor/Pit_P185_1343.png 2
+Glioma/Gli_P026_2031.png 0
+Meningioma/Men_P117_285.png 1
+Pituitary tumor/Pit_P186_1382.png 2
+Glioma/Gli_P095_854.png 0
+Glioma/Gli_P038_2097.png 0
+Glioma/Gli_P043_2129.png 0
+Glioma/Gli_P073_2924.png 0
+Pituitary tumor/Pit_P206_1639.png 2
+Meningioma/Men_P113_252.png 1
+Pituitary tumor/Pit_P198_1561.png 2
+Meningioma/Men_P137_670.png 1
+Pituitary tumor/Pit_P207_1653.png 2
+Glioma/Gli_P006_1895.png 0
+Pituitary tumor/Pit_P198_1558.png 2
+Pituitary tumor/Pit_P207_1648.png 2
+Meningioma/Men_P135_617.png 1
+Glioma/Gli_P002_1848.png 0
+Pituitary tumor/Pit_P146_1019.png 2
+Pituitary tumor/Pit_P164_1165.png 2
+Pituitary tumor/Pit_P201_1592.png 2
+Pituitary tumor/Pit_P224_1804.png 2
+Glioma/Gli_P027_2039.png 0
+Meningioma/Men_P108_201.png 1
+Meningioma/Men_P137_671.png 1
+Pituitary tumor/Pit_P206_1644.png 2
+Pituitary tumor/Pit_P159_1126.png 2
+Glioma/Gli_P077_3003.png 0
+Glioma/Gli_P033_2072.png 0
+Pituitary tumor/Pit_P207_1652.png 2
+Pituitary tumor/Pit_P165_1177.png 2
+Pituitary tumor/Pit_P186_1386.png 2
+Pituitary tumor/Pit_P159_1125.png 2
+Pituitary tumor/Pit_P224_1805.png 2
+Glioma/Gli_P082_3060.png 0
+Glioma/Gli_P061_2690.png 0
+Glioma/Gli_P061_2693.png 0
+Pituitary tumor/Pit_P164_1164.png 2
+Pituitary tumor/Pit_P191_1486.png 2
+Pituitary tumor/Pit_P175_1227.png 2
+Pituitary tumor/Pit_P164_1162.png 2
+Glioma/Gli_P043_2128.png 0
+Pituitary tumor/Pit_P161_1131.png 2
+Pituitary tumor/Pit_P224_1802.png 2
+Meningioma/Men_P107_175.png 1
+Meningioma/Men_P135_616.png 1
+Glioma/Gli_P066_2752.png 0
+Pituitary tumor/Pit_P198_1567.png 2
+Meningioma/Men_P113_255.png 1
+Pituitary tumor/Pit_P224_1803.png 2
+Pituitary tumor/Pit_P186_1384.png 2
+Meningioma/Men_P128_448.png 1
+Glioma/Gli_P011_1930.png 0
+Pituitary tumor/Pit_P146_1022.png 2
+Pituitary tumor/Pit_P191_1480.png 2
+Glioma/Gli_P061_2697.png 0
+Pituitary tumor/Pit_P207_1651.png 2
+Pituitary tumor/Pit_P209_1674.png 2
+Pituitary tumor/Pit_P213_1715.png 2
+Meningioma/Men_P128_446.png 1
+Pituitary tumor/Pit_P164_1167.png 2
+Glioma/Gli_P027_2037.png 0
+Meningioma/Men_P117_287.png 1
+Pituitary tumor/Pit_P164_1166.png 2
+Pituitary tumor/Pit_P169_1194.png 2
+Pituitary tumor/Pit_P186_1387.png 2
+Glioma/Gli_P073_2927.png 0
+Meningioma/Men_P124_373.png 1
+Meningioma/Men_P107_174.png 1
+Meningioma/Men_P108_206.png 1
+Glioma/Gli_P026_2033.png 0
