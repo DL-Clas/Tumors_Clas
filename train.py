@@ -12,24 +12,12 @@ from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
 from torch.optim import lr_scheduler
 
-# ==================================================
-# 模型选择区（取消对应注释即可切换模型）
-# ==================================================
-# 1. ResNet 系列 BTD-3
-# from torchvision.models import resnet18 as create_model
 
-# 2. MobileNet 系列 BTD-4
-# from torchvision.models import mobilenet_v2 as create_model
-
-# 3. EfficientNet 系列 BTD-44
-from torchvision.models import efficientnet_b0 as create_model
-
-# 4. 自定义模型
-# from net.MyDiagX import MyDiag21 as create_model
+from net.MyDiagX import MyDiag21 as create_model
 # ==================================================
 
 def set_seed(seed=42):
-    """固定随机种子以保障实验可复现性"""
+    """Fixed random seeds to ensure the reproducibility of the experiment"""
     random.seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
     np.random.seed(seed)
@@ -41,8 +29,8 @@ def set_seed(seed=42):
 
 def init_weights(m):
     """
-    统一使用 Xavier Uniform 初始化
-    对于卷积层和全连接层应用 Xavier 初始化，对于 Batch Normalization 层保持默认或设为恒等
+    Unified initialization with Xavier Uniform
+    Xavier initialization is applied to convolution layer and fully connected layer, and the default or identity is set to Batch Normalization layer.
     """
     if isinstance(m, nn.Conv2d):
         nn.init.xavier_uniform_(m.weight)
@@ -57,7 +45,7 @@ def init_weights(m):
         nn.init.constant_(m.bias, 0)
 
 class KFoldDataset(Dataset):
-    """自定义数据集类，支持带空格的路径解析"""
+    """Custom dataset class, supporting path resolution with spaces."""
     def __init__(self, data_root, txt_files, transform=None):
         self.data_root = data_root
         self.transform = transform
@@ -68,7 +56,7 @@ class KFoldDataset(Dataset):
                 for line in f:
                     line = line.strip()
                     if not line: continue
-                    # 使用 rsplit 解决路径中包含空格的问题
+                    # Use rsplit to solve the problem of spaces in the path.
                     parts = line.rsplit(maxsplit=1) 
                     if len(parts) == 2:
                         self.samples.append((os.path.join(data_root, parts[0]), int(parts[1])))
@@ -82,7 +70,7 @@ class KFoldDataset(Dataset):
         return image, label
 
 class EarlyStopping:
-    """早停机制"""
+    """Early stop mechanism"""
     def __init__(self, patience=10, path='best_model.pth'):
         self.patience = patience
         self.counter = 0
@@ -109,17 +97,17 @@ class EarlyStopping:
         self.val_loss_min = val_loss
 
 def get_num_classes(data_root):
-    """动态获取类别数"""
+    """Dynamically obtain the number of categories"""
     mapping_path = os.path.join(data_root, "class_mapping.txt")
     if not os.path.exists(mapping_path): return 3
     return sum(1 for line in open(mapping_path) if line.strip())
 
 def main(args):
     set_seed(42)
-    # 优先使用 GPU 加速
+    # Give priority to GPU acceleration
     device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
     
-    # 自动识别当前选择的模型名称
+    # Automatically identify the currently selected model name.
     model_name = create_model.__name__
     model_weights_dir = os.path.join(args.weights_dir, model_name)
     if not os.path.exists(model_weights_dir):
@@ -149,7 +137,7 @@ def main(args):
     assert os.path.exists(args.data_root), f"Path '{args.data_root}' does not exist."
     num_classes = get_num_classes(args.data_root)
 
-    # 启动 5-Fold 训练
+    # Start 5-Fold training
     for fold in range(1, args.k_folds + 1):
         print(f"\n▶️ Starting Fold {fold}/{args.k_folds}")
         
@@ -162,13 +150,13 @@ def main(args):
         train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=4)
         val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)
         
-        # 1. 实例化模型（不使用预训练权重，为了进行公平对比实验）
+        # 1. Instantiate the model (without pre-training weights, in order to conduct a fair comparison experiment)
         net = create_model(weights=None)
         
-        # 2. 动态修改输出层
-        if hasattr(net, 'fc'): # ResNet, ShuffleNet
+        # 2. Dynamically modify the output layer
+        if hasattr(net, 'fc'): 
             net.fc = nn.Linear(net.fc.in_features, num_classes)
-        elif hasattr(net, 'classifier'): # MobileNet, VGG, EfficientNet
+        elif hasattr(net, 'classifier'): 
             if isinstance(net.classifier, nn.Sequential):
                 in_features = net.classifier[-1].in_features
                 net.classifier[-1] = nn.Linear(in_features, num_classes)
@@ -176,7 +164,7 @@ def main(args):
                 in_features = net.classifier.in_features
                 net.classifier = nn.Linear(in_features, num_classes)
         
-        # 3. 【核心修改】应用 Xavier 统一初始化
+        # 3. Apply Xavier unified initialization
         net.apply(init_weights)
         net.to(device)
 
@@ -225,7 +213,7 @@ if __name__ == '__main__':
     
     parser.add_argument('--data_root', type=str, default=os.path.join(BASE_DIR, "data", "BTD-44"))
     parser.add_argument('--weights_dir', type=str, default=os.path.join(BASE_DIR, "weights"))
-    parser.add_argument('--batch_size', type=int, default=32)
+    parser.add_argument('--batch_size', type=int, default=16)
     parser.add_argument('--epochs', type=int, default=15)
     parser.add_argument('--lr', type=float, default=1e-3)
     parser.add_argument('--min_lr', type=float, default=1e-5)
