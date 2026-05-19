@@ -9,7 +9,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # ================= 1. Core parameter configuration =================
-PROPOSED_MODEL_FILE = 'predictions_B3_BT.txt' 
+PROPOSED_MODEL_FILE = './results/predictions_B44_BT.txt' 
 BOOTSTRAP_ITERS = 1000  
 RANDOM_SEED = 42        
 
@@ -65,9 +65,9 @@ def format_p_value(p_val):
     else:
         return f"{p_val:.3f}"
 
-# ================= 3. 自动化制表主流程 =================
+# ================= 3. Automatic tabulation main process =================
 if __name__ == "__main__":
-    all_files = glob.glob('predictions_B3_*.txt')
+    all_files = glob.glob('predictions_B44_*.txt')
     if PROPOSED_MODEL_FILE not in all_files:
         raise FileNotFoundError(f" Target file not found. {PROPOSED_MODEL_FILE}, please check the path or file name!")
         
@@ -81,7 +81,7 @@ if __name__ == "__main__":
     baseline_files = [f for f in all_files if f != PROPOSED_MODEL_FILE]
     
     for file in tqdm(baseline_files + [PROPOSED_MODEL_FILE], desc="Processing Models"):
-        model_name = os.path.basename(file).replace('predictions_B3_', '').replace('.txt', '')
+        model_name = os.path.basename(file).replace('predictions_B44_', '').replace('.txt', '')
         df = load_and_preprocess(file)
         metrics = calculate_patient_bootstrap_ci(df, n_bootstraps=BOOTSTRAP_ITERS)
         
