@@ -86,7 +86,6 @@ def process_predictions_and_plot(file_path, y_min=85):
         line_kws={'color': '#d7191c', 'linestyle': '--', 'linewidth': 2}
     )
 
-    # 自定义 Y 轴范围
     plt.ylim(bottom=y_min, top=101) 
     plt.xticks(fontsize=20)  
     plt.yticks(fontsize=20)  
@@ -105,4 +104,4 @@ def process_predictions_and_plot(file_path, y_min=85):
     plt.show()
 
 if __name__ == "__main__":
-    process_predictions_and_plot('/Users/brosion/Documents/Code/Tumors_Clas-main/weights/efficientnet_b0/predictions_B44_BT.txt', y_min=60)
+    process_predictions_and_plot('results/predictions_B44_BT.txt', y_min=60)
