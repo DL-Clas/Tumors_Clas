@@ -12,19 +12,7 @@ from torch.utils.data import DataLoader, Dataset
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 import scipy.stats as stats
 
-# ==================================================
-# 模型选择区（取消对应注释即可切换模型）
-# ==================================================
-# 1. ResNet  BTD-3
-# from torchvision.models import resnet18 as create_model
-
-# 2. MobileNet  BTD-4
-# from torchvision.models import mobilenet_v2 as create_model
-
-# 3. EfficientNet  BTD-44
-from torchvision.models import efficientnet_b0 as create_model
-
-# from net.MyDiagX import MyDiag21 as create_model
+from net.MyDiagX import MyDiag21 as create_model
 # ==================================================
 
 class KFoldDataset(Dataset):
@@ -87,20 +75,20 @@ def plot_and_save_confusion_matrix(cm, classes, save_dir, title, filename, norma
 
 def compute_95_ci_margin(data):
     """
-    计算基于 t 分布的 95% 置信区间 Margin。
-    直接返回用于论文汇报的 Mean 和 Margin (Mean ± Margin)。
+    Calculate 95% confidence interval based on t distribution Margin。
+    Return Mean ± Margin
     """
     a = 1.0 * np.array(data)
     n = len(a)
     mean, se = np.mean(a), stats.sem(a)
-    # 对于 n=5, 自由度 df=4, 计算 95% CI 的误差界限
+    # For n=5 and degree of freedom df=4, the error bound of 95% CI is calculated.
     ci_margin = se * stats.t.ppf((1 + 0.95) / 2., n-1) if n > 1 else 0
     return mean, ci_margin
 
 def patient_level_bootstrap(patient_results, n_bootstraps=1000):
     """
-    执行患者级 Bootstrap 重采样。
-    直接返回 Mean 和 95% CI Margin (基于正态近似)。
+    Perform patient-level Bootstrap resampling.
+    Returns Mean and 95% cimark directly (based on normal approximation).
     """
     y_true_patient = []
     y_pred_patient = []
@@ -123,7 +111,7 @@ def patient_level_bootstrap(patient_results, n_bootstraps=1000):
         accs.append(accuracy_score(sample_y_true, sample_y_pred) * 100)
         f1s.append(f1_score(sample_y_true, sample_y_pred, average='macro', zero_division=0) * 100)
 
-    # 论文报告标准：均值取真实分布的表现，误差界限取 Bootstrap 标准差的 1.96 倍 (95% CI)
+    # The mean value is represented by true distribution, and the error limit is 1.96 times (95% CI) of Bootstrap standard deviation.
     base_acc = accuracy_score(y_true_patient, y_pred_patient) * 100
     base_f1 = f1_score(y_true_patient, y_pred_patient, average='macro', zero_division=0) * 100
     
@@ -142,7 +130,7 @@ def extract_patient_id(filepath):
 def main(args):
     device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
     
-    # 动态识别模型与结果路径
+    # Dynamic identification model and result path
     model_name = create_model.__name__
     model_weights_dir = os.path.join(args.weights_dir, model_name)
     model_results_dir = os.path.join(args.results_dir, model_name)
@@ -175,14 +163,14 @@ def main(args):
     for fold in range(1, args.k_folds + 1):
         weight_path = os.path.join(model_weights_dir, f'Fold{fold}_Best.pth')
         if not os.path.exists(weight_path):
-            print(f"❌ 找不到权重文件: {weight_path}")
-            print(f"💡 提示：请确保你已经运行过 train.py 并成功生成了该模型的权重。")
+            print(f"❌ Weight file not found.: {weight_path}")
+            print(f"💡 Tip: Please make sure that you have run train.py and successfully generated the weights of the model.")
             return
 
         test_dataset = KFoldDataset(args.data_root, f"fold_{fold}.txt", val_transform)
         test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)
 
-        # 动态组装架构
+        # Dynamic assembly architecture
         try:
             net = create_model(weights=None)
         except:
@@ -234,7 +222,7 @@ def main(args):
         print(f"Fold {fold} | Acc: {acc:.2f}% | Prec: {prec:.2f}% | Rec: {rec:.2f}% | F1: {f1:.2f}%")
 
     # ==========================================================
-    # 数据导出 (自动存储在对应模型 results 目录下)
+    # Data export (automatically stored in the corresponding model results directory)
     # ==========================================================
     csv_path = os.path.join(model_results_dir, "fold_level_raw_results.csv")
     with open(csv_path, 'w', newline='') as csvfile:
@@ -244,10 +232,10 @@ def main(args):
             row = {'Fold': i+1}
             row.update(m)
             writer.writerow(row)
-    print(f"\n✅ 折级原始评估结果已导出至: {csv_path}")
+    print(f"\n✅ The original evaluation result of folding has been exported to: {csv_path}")
 
     # ==========================================================
-    # 核心修改：生成 Mean ± 95% CI (Margin)
+    # Generate Mean ± 95% CI (Margin)
     # ==========================================================
     print(f"\n{'='*50}\n   JOURNAL REPORT: 5-FOLD SUMMARY (Mean ± 95% CI)\n{'='*50}")
     metric_keys = ['Accuracy', 'Precision', 'Recall', 'F1-Score']
@@ -255,12 +243,11 @@ def main(args):
     for key in metric_keys:
         values = [m[key] for m in fold_metrics]
         mean, ci_margin = compute_95_ci_margin(values)
-        # 绝不输出冗余信息，直接给出 "数值 ± Margin" 格式
         print(f"{key:>12}: {mean:.2f}% ± {ci_margin:.2f}%")
     print(f"   * The ± value represents the 95% Confidence Interval margin.")
 
     # ==========================================================
-    # 混淆矩阵生成 (自动存储在对应模型 results 目录下)
+    # Generation of confusion matrix (automatically stored in the corresponding model results directory)
     # ==========================================================
     cm_raw = confusion_matrix(global_all_labels, global_all_preds)
     cm_norm = confusion_matrix(global_all_labels, global_all_preds, normalize='true')
@@ -269,15 +256,15 @@ def main(args):
                                    f"Global Confusion Matrix (Raw) - {model_name}", "cm_raw.png")
     plot_and_save_confusion_matrix(cm_norm, class_names, model_results_dir, 
                                    f"Global Confusion Matrix (Normalized) - {model_name}", "cm_normalized.png", normalize=True)
-    print(f"\n✅ 客观热图评估生成完毕，已存入 {model_results_dir} 目录。")
+    print(f"\n✅ The objective heat map evaluation has been completed and stored in the {model_results_dir} directory.")
 
     # ==========================================================
-    # 患者级 Bootstrap 统计检验 (同样输出 Mean ± 95% CI)
+    # Patient-level Bootstrap statistical test (also output mean 95% ci)
     # ==========================================================
     print(f"\n{'='*50}\n   PATIENT-LEVEL BOOTSTRAP (B=1000, Mean ± 95% CI)\n{'='*50}")
     p_acc, p_acc_margin, p_f1, p_f1_margin = patient_level_bootstrap(patient_results, n_bootstraps=1000)
     
-    print(f"独立患者总数: {len(patient_results)}")
+    print(f"Total number of independent patients: {len(patient_results)}")
     print(f"Patient-Level Accuracy : {p_acc:.2f}% ± {p_acc_margin:.2f}%")
     print(f"Patient-Level F1-Score : {p_f1:.2f}% ± {p_f1_margin:.2f}%")
     print('='*50)
@@ -286,7 +273,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     
-    # 默认路径配置
     parser.add_argument('--data_root', type=str, default=os.path.join(BASE_DIR, "data", "BTD-44"))
     parser.add_argument('--weights_dir', type=str, default=os.path.join(BASE_DIR, "weights"))
     parser.add_argument('--results_dir', type=str, default=os.path.join(BASE_DIR, "results"))
