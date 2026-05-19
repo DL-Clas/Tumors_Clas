@@ -47,7 +47,7 @@ def get_calibration_curve(confidences, accuracies, n_bins=10):
 # ==========================================
 # 1. Read data
 # ==========================================
-file_path = '/Users/brosion/Documents/Code/Tumors_Clas-main/updated_predictions_with_conf.txt' 
+file_path = 'results/predictions_with_conf.txt' 
 
 df = pd.read_csv(file_path, sep='\t', header=None, 
                  names=['fold', 'true_label', 'pred_label', 'confidence', 'path'])
