@@ -276,7 +276,7 @@ if __name__ == '__main__':
     parser.add_argument('--data_root', type=str, default=os.path.join(BASE_DIR, "data", "BTD-44"))
     parser.add_argument('--weights_dir', type=str, default=os.path.join(BASE_DIR, "weights"))
     parser.add_argument('--results_dir', type=str, default=os.path.join(BASE_DIR, "results"))
-    parser.add_argument('--batch_size', type=int, default=32)
+    parser.add_argument('--batch_size', type=int, default=16)
     parser.add_argument('--k_folds', type=int, default=5)
     
     main(parser.parse_args())
