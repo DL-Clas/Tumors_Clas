@@ -12,19 +12,7 @@ from torch.utils.data import DataLoader, Dataset
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 import scipy.stats as stats
 
-# ==================================================
-# Model selection area (you can switch models by canceling corresponding comments)
-# ==================================================
-# 1. ResNet BTD-3
-# from torchvision.models import resnet18 as create_model
-
-# 2. MobileNet  BTD-4
-# from torchvision.models import mobilenet_v2 as create_model
-
-# 3. EfficientNet  BTD-44
-from torchvision.models import efficientnet_b0 as create_model
-
-# from net.MyDiagX import MyDiag21 as create_model
+from net.MyDiagX import MyDiag21 as create_model
 # ==================================================
 
 class KFoldDataset(Dataset):
@@ -168,7 +156,7 @@ def main(args):
     # Save a new cache file with Confidence.
     # In order to prevent conflicts with the old file format, the file name was changed to predictions _ with _ conf.txt.
     # ==========================================================
-    cache_file = os.path.join(model_weights_dir, "predictions_with_conf.txt")
+    cache_file = os.path.join(model_weights_dir, "./results/predictions_with_conf.txt")
 
     if os.path.exists(cache_file):
         print(f"🚀 Detection of inference results cache file with confidence: {cache_file}")
@@ -331,7 +319,7 @@ if __name__ == '__main__':
     parser.add_argument('--data_root', type=str, default=os.path.join(BASE_DIR, "data", "BTD-44"))
     parser.add_argument('--weights_dir', type=str, default=os.path.join(BASE_DIR, "weights"))
     parser.add_argument('--results_dir', type=str, default=os.path.join(BASE_DIR, "results"))
-    parser.add_argument('--batch_size', type=int, default=32)
+    parser.add_argument('--batch_size', type=int, default=16)
     parser.add_argument('--k_folds', type=int, default=5)
     
     main(parser.parse_args())
