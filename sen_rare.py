@@ -15,7 +15,7 @@ def process_and_plot_rare_confusion(file_path, num_rare_classes=8):
     """
     data = []
     
-    print(f"正在读取文件: {file_path} ...")
+    print(f"Reading file: {file_path} ...")
     with open(file_path, 'r', encoding='utf-8') as f:
         lines = f.readlines()
         
@@ -116,4 +116,4 @@ def process_and_plot_rare_confusion(file_path, num_rare_classes=8):
 
 if __name__ == "__main__":
    
-    process_and_plot_rare_confusion('/Users/brosion/Documents/Code/Tumors_Clas-main/weights/efficientnet_b0/predictions_B44_BT.txt', num_rare_classes=8)
+    process_and_plot_rare_confusion('results/predictions_B44_BT.txt', num_rare_classes=8)
