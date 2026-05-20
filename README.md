@@ -23,7 +23,7 @@ To address these issues, we propose the **BTNet-TS** architecture, which consist
 |---------|----------|-------|
 | BTD-4  | **98.28%** | 4-class brain tumor MRI |
 | BTD-3  | **98.69%** | 3-class brain tumor MRI |
-| BTD-44 | **96.03 ± 0.56%** | 44-class fine-grained  |
+| BTD-44 | **96.03** | 44-class fine-grained  |
 
 ---
 
