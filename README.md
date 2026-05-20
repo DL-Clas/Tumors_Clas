@@ -63,7 +63,7 @@ Please download the datasets from their public repositories or shared data links
 - **Source:** [Kaggle](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)
 - **Details:** 7,023 aggregated human brain MRIs
 - **Classes:** Glioma, Meningioma, Pituitary, Normal
-- **Split:** 5-fold cross-validation, performed **image-wise with rigorous deduplication**
+- **Split:** 5-fold cross-validation, performed **strictly at the patient level and image-wise with rigorous deduplication** to prevent near-duplicate slice leakage
 - **Processed:** [download](https://www.kaggle.com/datasets/cvlearning0616/btd-4-dataset)
 
 ### 2. BTD-3 — Brain Tumor Dataset (3-class)
@@ -71,7 +71,7 @@ Please download the datasets from their public repositories or shared data links
 - **Source:** [figshare](https://figshare.com/articles/dataset/brain_tumor_dataset/1512427)
 - **Details:** 3,064 contrast-enhanced T1 images across 233 patients
 - **Classes:** Glioma, Meningioma, Pituitary
-- **Split:** 5-fold cross-validation, performed **strictly at the patient level** to prevent near-duplicate slice leakage
+- **Split:** 5-fold cross-validation, performed **strictly at the patient level and image-wise with rigorous deduplication** to prevent near-duplicate slice leakage
 - **Processed:** [download](https://www.kaggle.com/datasets/cvlearning0616/btd-3-dataset)
 
 
@@ -79,7 +79,7 @@ Please download the datasets from their public repositories or shared data links
 
 - **Source:** [Kaggle](https://www.kaggle.com/datasets/fernando2rad/brain-tumor-mri-images-44c)
 - **Details:** 4,479 highly imbalanced brain tumor images across 44 fine-grained sub-categories
-- **Split:** 5-fold cross-validation, performed **image-wise with rigorous deduplication**
+- **Split:** 5-fold cross-validation, performed **strictly at the patient level and image-wise with rigorous deduplication** to prevent near-duplicate slice leakage
 - **Processed:** [download](https://www.kaggle.com/datasets/cvlearning0616/btd-44-dataset)
 
 ### Image Deduplication
