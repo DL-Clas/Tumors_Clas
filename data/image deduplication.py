@@ -104,6 +104,6 @@ if __name__ == '__main__':
     
     global_deduplicate_by_folder(
         dataset_dir=TARGET_DATASET, 
-        hash_threshold=0.65,   # Allow 2 bit hash error, specifically for dealing with same-source images that have been re-compressed or introduced slight noise
-        action='move'       # Strongly recommend keeping the move mode, manually confirm the archive folder is correct before彻底 deleting
+        hash_threshold=0.96,   # Allow 2 bit hash error, specifically for dealing with same-source images that have been re-compressed or introduced slight noise
+        action='move'       # Strongly recommend keeping the move mode, manually confirm the archive folder is correct before deleting
     )
