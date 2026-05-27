@@ -224,29 +224,6 @@ python efficiency_eval.py
 | Throughput | Images/second (batch_size=1) |
 | Peak GPU Memory | Max memory allocated during inference |
 
----
-
-## MRI Perturbation Simulation
-
-Simulates clinically realistic MRI perturbations to visualize and qualitatively assess model robustness.
-
-```bash
-python simulate.py
-```
-
-**Six perturbation types:**
-
-1. **Intensity Nonuniformity** — Multiplicative B1 bias field simulating RF inhomogeneity
-2. **Motion Artifacts** — Y-axis ghosting via phase-encoding direction phase shifts
-3. **Scanner/Site Shifts** — Affine rotation (5°) + translation simulating patient positioning variation
-4. **Resolution Changes** — K-space truncation retaining 18% of frequency information
-5. **Skull-stripping Variation** — Asymmetric mask simulating algorithm over-cutting of cortex
-6. **Modality Differences** — Nonlinear contrast inversion with feathered alpha blending (simulating T1↔T2 shift)
-
-Outputs a 2×4 subplot figure comparing original vs. perturbed images with model predictions.
-
----
-
 ## Sensitivity Analyses
 
 ### Class-Prior Sensitivity (`sen_prior.py`)
