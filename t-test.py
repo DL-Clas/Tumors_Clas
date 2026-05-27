@@ -9,7 +9,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # ================= 1. Core parameter configuration =================
-PROPOSED_MODEL_FILE = './results/predictions_B44_BT.txt' 
+PROPOSED_MODEL_FILE = 'predictions_B44_BT.txt' 
 BOOTSTRAP_ITERS = 1000  
 RANDOM_SEED = 42        
 
